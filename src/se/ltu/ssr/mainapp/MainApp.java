@@ -72,7 +72,7 @@ public class MainApp {
     	ssrCoapServer.StartServer();
     	log.info("CoapServer Started.");
     	FiwareDataSenderServer fiwareDataSenderServer = new FiwareDataSenderServer(mainApp.getDataQueueforFiware());
-    	fiwareDataSenderServer.start();
+    //	fiwareDataSenderServer.start();
     	log.info("Fiware Data Sender Server Started.");
     	MongoDBClient mongoDbClient = new MongoDBClient(mainApp.getMainConfiguration().getProperty("MongoDBHost"), Integer.parseInt(mainApp.getMainConfiguration().getProperty("MongoDBPort")), mainApp.getMainConfiguration().getProperty("MongoDBDatabaseName"), mainApp.getMainConfiguration().getProperty("MongoDBcollectionName"));
     	if(mongoDbClient.createConnection()){
@@ -103,7 +103,7 @@ public class MainApp {
 					DataPacket dp =mainApp.getDataQueue().take();
 					mainApp.getDataQueueforFiware().put(dp);
 					if(mongoDbClient.insertData(dp)){
-						log.info("Data Inserted: "+dp.toString());
+						//log.info("Data Inserted: "+dp.toString());
 					}else{
 						log.error("Data cannot be inserted. Adding to queue");
 						mainApp.getDataQueue().put(dp);

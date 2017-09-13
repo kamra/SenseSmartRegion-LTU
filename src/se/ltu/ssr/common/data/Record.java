@@ -8,6 +8,9 @@ public class Record {
 	
 	
 	
+	public Record() {
+		super();
+	}
 	public Record(String name, String value, String unit, String description) {
 		super();
 		this.name = name;
